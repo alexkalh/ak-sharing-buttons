@@ -1,0 +1,31 @@
+#aksb-buttons-wrap {
+  margin-top: 40px;
+  margin-bottom: 5px;
+  padding: 0px;
+  margin-left: -15px;
+}
+#aksb-buttons-wrap .twitter-share-button,
+#aksb-buttons-wrap #___plusone_0,
+#aksb-buttons-wrap .fb-like,
+#aksb-buttons-wrap .IN-widget,
+#aksb-buttons-wrap .pin-it {
+  position: relative !important;
+  display: block !important;
+  float: left !important;
+  margin-left: 15px;
+}
+#aksb-buttons-wrap .twitter-share-button {
+  margin-right: 15px;
+}
+#aksb-buttons-wrap #___plusone_0 {
+  margin-right: 15px;
+}
+#aksb-buttons-wrap .fb-like {
+  margin-right: 15px;
+}
+#aksb-buttons-wrap .IN-widget {
+  margin-right: 15px;
+}
+#aksb-buttons-wrap .pin-it {
+  margin-right: 30px;
+}
