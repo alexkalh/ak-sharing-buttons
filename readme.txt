@@ -7,6 +7,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Contributors: alex kalh
 
+http://colourstheme.com/forums/forum/wordpress/plugin/ak-sharing-buttons/
+
 == Description ==
 
 Ajax load and append a list of sharing button to single-post, static-page. Ex: facebook, twitter, pinterst, google-plus, linkedin.
@@ -17,15 +19,16 @@ This plugin only working with is_singular().
 
 == Installation ==
 
-1. Upload and install AK Sharing Buttons in the same way you'd install any other plugin.
+Upload and install AK Sharing Buttons in the same way you'd install any other plugin.
 
 == Screenshots ==
 
-1. Sharing buttons with single post
-2. Sharing buttons with static page
+1. Sharing buttons with single post, page
+2. Sharing buttons with bbPress forums, topic
 
 == Documentation ==
 
+[Documentation](http://colourstheme.com/forums/forum/wordpress/plugin/ak-sharing-buttons/) is available on ColoursTheme.
 
 == Changelog ==
 
