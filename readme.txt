@@ -5,11 +5,15 @@ Tested up to: 4.2.2
 Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Donate link: 
 Contributors: alex kalh
 
 == Description ==
+
 Ajax load and append a list of sharing button to single-post, static-page. Ex: facebook, twitter, pinterst, google-plus, linkedin.
+
+After event window.load, your website send an ajax request, and get back a list of socials link. And append it to the end of "the_content".
+
+This plugin only working with is_singular().
 
 == Installation ==
 
@@ -18,17 +22,12 @@ Ajax load and append a list of sharing button to single-post, static-page. Ex: f
 == Screenshots ==
 
 1. Sharing buttons with single post
-1. Sharing buttons with static page
-
+2. Sharing buttons with static page
 
 == Documentation ==
 
 
-== Frequently Asked Questions ==
-
-
 == Changelog ==
 
-= 1.0.0 =
-
-== Upgrade Notice ==
+= 1.0.0 (2015.06.16) =
+Release the first version!
