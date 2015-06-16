@@ -17,14 +17,13 @@ Text Domain: ak-sharing-buttons
 Domain Path: /languages/
 */
 
-define('AKSB_IS_DEV', true);
+define('AKSB_IS_DEV', false);
 define('AKSB_SECURITY_KEY', '9oupd.YEHkX$B$PtGeS2rkOSbtX/.EB9g/');
 define('AKSB_DIR_URL', plugin_dir_url(__FILE__));
 define('AKSB_DIR_PATH', plugin_dir_path(__FILE__));
 
 add_action('plugins_loaded', array('AK_Sharing_Buttons', 'plugins_loaded'));	
 add_action('after_setup_theme', array('AK_Sharing_Buttons', 'after_setup_theme'), 11);	
-
 
 class AK_Sharing_Buttons {
 
