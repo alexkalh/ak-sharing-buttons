@@ -1,3 +1,5 @@
+"use strict";
+
 jQuery(window).load ->
 	AKSB.load()
 	return

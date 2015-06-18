@@ -3,7 +3,7 @@
 Plugin Name: AK Sharing Buttons
 Plugin URI: http://colourstheme.com/forums/forum/wordpress/plugin/ak-sharing-buttons/
 Description: Ajax load and append a list of sharing button to single-post, static-page. Ex: facebook, twitter, pinterst, google-plus, linkedin.
-Version: 1.0.0
+Version: 1.0.1
 Author: Colours Theme
 Author URI: http://colourstheme.com
 License: GNU General Public License v3 or later
@@ -19,7 +19,6 @@ Domain Path: /languages/
 */
 
 define('AKSB_IS_DEV', false);
-define('AKSB_SECURITY_KEY', '9oupd.YEHkX$B$PtGeS2rkOSbtX/.EB9g/');
 define('AKSB_DIR_URL', plugin_dir_url(__FILE__));
 define('AKSB_DIR_PATH', plugin_dir_path(__FILE__));
 
@@ -28,6 +27,9 @@ add_action('after_setup_theme', array('AK_Sharing_Buttons', 'after_setup_theme')
 
 class AK_Sharing_Buttons {
 
+	/*
+	 * Init action hook and filter hook for plugin.
+	 */
 	function __construct(){		
 		if(!is_admin()){
 				add_action('loop_start', array($this, 'loop_start'));
@@ -40,37 +42,65 @@ class AK_Sharing_Buttons {
 		add_action('wp_ajax_nopriv_aksb_load_sharing_buttons', array($this, 'load_sharing_buttons'));					
 	}
 
+	/*
+	 * load plugin text-domain for features "multi-languages"
+	 */
 	public static function plugins_loaded(){
 		load_plugin_textdomain('ak-sharing-buttons', false, AKSB_DIR_PATH . '/languages/');
 	}
 
+	/*
+	 * Create instance of class AK_Sharing_Buttons on action hook "after_setup_theme"
+	 */
 	public static function after_setup_theme(){
 			new AK_Sharing_Buttons();							
 	}	
 
+	/*
+	 * Check current page is post, page, (a singular object).
+	 * And add fiter to append button wrap
+	 */
 	public function loop_start($query){
 		if($query->is_main_query() && is_singular()){
 			add_filter('the_content', array($this, 'add_buttons_wrap'));
 		}
 	}
 
+	/*
+	 * Check current page is post, page, (a singular object).
+	 * Remove filter the_content / add_buttons_wrap after fire it.
+	 */
 	public function loop_end($query){
 		if($query->is_main_query()  && is_singular()){
 			remove_filter('the_content', array($this, 'add_buttons_wrap'));
 		}
 	}
 
+	/*
+	 * Add a div with ID:aksb-buttons-wrap, 
+	 * with jquery event window.load(), a ajax request will be get sharing buttons and fill to this element.
+	 */	
 	public function add_buttons_wrap($content){		
-		$content .= '<div id="aksb-buttons-wrap" class="clearfix"></div>';
+		if(!empty($content)){
+			$content .= '<div id="aksb-buttons-wrap" class="clearfix"></div>';
+		}
+
 		return $content;
 	}
 
+	/*
+	 * Add a hidden field to before tag body close.
+	 * This field need for ajax security
+	 */
 	public function add_security_key(){
-		wp_nonce_field(AKSB_SECURITY_KEY, 'aksb-sharing-buttons-security');
+		wp_nonce_field('aksb_load_sharing_buttons', 'aksb-sharing-buttons-security');
 	}
 
+	/*
+	 * An ajax response. Return sharing buttons to client.	 
+	 */
 	public function load_sharing_buttons(){
-		check_ajax_referer(AKSB_SECURITY_KEY, 'security');
+		check_ajax_referer('aksb_load_sharing_buttons', 'security');
 
 		$post_id   = isset($_POST['post_id']) ? (int) $_POST['post_id'] : 0;
 	
@@ -106,7 +136,7 @@ class AK_Sharing_Buttons {
 				data-send="false" 
 				data-layout="button_count" 
 				data-width="200" 
-				data-show-faces="true"></div>
+				data-show-faces="false"></div>
 				<div id="fb-root"></div>
 				<script type="text/javascript">
 					(function(d, s, id) {
@@ -151,10 +181,13 @@ class AK_Sharing_Buttons {
 		exit();
 	}
 
+	/*
+	 * Enqueu javascript, stylesheet for sharing buttons
+	 */
 	public function enqueue_scripts(){		
 		$suffix = AKSB_IS_DEV ? '' : '.min';
-		wp_enqueue_style('aksb-style', AKSB_DIR_URL . "/css/style{$suffix}.css", array(), NULL);
-    wp_enqueue_script('aksb-script', AKSB_DIR_URL . "/js/script{$suffix}.js", array('jquery'), FALSE, TRUE);
+		wp_enqueue_style('aksb-style', AKSB_DIR_URL . "css/style{$suffix}.css", array(), NULL);
+    wp_enqueue_script('aksb-script', AKSB_DIR_URL . "js/script{$suffix}.js", array('jquery'), FALSE, TRUE);
     wp_localize_script('aksb-script', 'aksb', array(
 			'url'     => admin_url('admin-ajax.php'),
 			'post_id' => is_singular() ? get_queried_object_id() : 0

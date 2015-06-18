@@ -1,0 +1,7 @@
+= 1.0.1 (2015.06.18) =
++ remove: constant "AKSB_SECURITY_KEY"
++ edit function "add_security_key": replace AKSB_SECURITY_KEY by string "aksb_load_sharing_buttons"
++ add conditional: the sharing button only display if "post_content" is not null.
+
+= 1.0.0 (2015.06.16) =
+Release the first version!

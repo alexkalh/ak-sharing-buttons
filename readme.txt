@@ -2,10 +2,10 @@
 Tags: facebook, google, twitter, linkedin, pinterest, share, share buttons, share links
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Contributors: alex kalh
+Contributors: Alex Kalh
 
 http://colourstheme.com/forums/forum/wordpress/plugin/ak-sharing-buttons/
 
@@ -31,6 +31,11 @@ Upload and install AK Sharing Buttons in the same way you'd install any other pl
 [Documentation](http://colourstheme.com/forums/forum/wordpress/plugin/ak-sharing-buttons/) is available on ColoursTheme.
 
 == Changelog ==
+
+= 1.0.1 (2015.06.18) =
++ remove: constant "AKSB_SECURITY_KEY"
++ edit function "add_security_key": replace AKSB_SECURITY_KEY by string "aksb_load_sharing_buttons"
++ add conditional: the sharing button only display if "post_content" is not null.
 
 = 1.0.0 (2015.06.16) =
 Release the first version!

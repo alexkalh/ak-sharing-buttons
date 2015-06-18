@@ -1,5 +1,5 @@
 #aksb-buttons-wrap{
-	margin-top: 40px;	
+	margin-top: 25px;	
 	margin-bottom: 5px;
 	padding: 0px;
 	margin-left: -15px;
@@ -8,11 +8,12 @@
 	#___plusone_0,
 	.fb-like,
 	.IN-widget,
-	.pin-it{
-		position: relative !important;
+	.pin-it{		
 		display: block !important;
 		float: left !important;
-		margin-left: 15px;		
+		margin-left: 15px !important;	
+		margin-top: 15px !important;
+		overflow: hidden !important;
 	}
 
 
